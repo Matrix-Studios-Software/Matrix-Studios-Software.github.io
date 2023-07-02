@@ -7502,7 +7502,7 @@ function ep() {
 			v && u(v === "dark")
 		}, []), ve.useEffect(() => {
 			(async () => {
-				const S = await (await fetch("./config.json")).json();
+				const S = await (await fetch("./stafflist.json")).json();
 				t(S)
 			})()
 		}, [e]), !e) return R("div", {

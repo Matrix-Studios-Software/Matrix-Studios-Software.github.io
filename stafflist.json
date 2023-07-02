@@ -1,0 +1,20 @@
+{
+    "Name": "Matrix Studios",
+    "ServerIP": "matrixstudios.ltd",
+    "DiscordURL": "discord.matrixstudios.ltd",
+    "Homepage": "/",
+    "StaffPerPage": 5,
+    "AvatarDisplayType": "head",
+    "Ranks": {
+      "Founder": "red",
+      "Developer": "cyan",
+      "Resource Staff": "yellow"
+    },
+    "Staff": [
+      { "name": "98ping", "rank": "Founder" },
+      { "name": "Serversided", "rank": "Founder" },
+      { "name": "Embry_", "rank": "Developer" },
+      { "name": "Nopox", "rank": "Developer" },
+    ]
+  }
+  
