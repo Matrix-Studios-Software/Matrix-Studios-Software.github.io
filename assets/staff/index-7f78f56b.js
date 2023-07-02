@@ -7478,7 +7478,7 @@ const Zd = ({
 				})]
 			}), R("img", {
 				className: "w-40 order-0 md:order-1 drop-shadow-2xl",
-				src: "/assets/img/matrix.png",
+				src: "./logo.png",
 				alt: "logo"
 			}), ce("button", {
 				className: o,
@@ -7493,7 +7493,8 @@ const Zd = ({
 				})]
 			})]
 		})
-	};
+	},
+	bd = "";
 
 function ep() {
 	const [e, t] = ve.useState(null), [n, r] = ve.useState(""), [l, o] = ve.useState(1), [i, u] = ve.useState(!0), [s, c] = ve.useState(!1);
