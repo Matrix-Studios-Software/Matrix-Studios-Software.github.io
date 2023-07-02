@@ -7478,7 +7478,7 @@ const Zd = ({
 				})]
 			}), R("img", {
 				className: "w-40 order-0 md:order-1 drop-shadow-2xl",
-				src: "./logo.png",
+				src: "./assets/img/matrix.png",
 				alt: "logo"
 			}), ce("button", {
 				className: o,
