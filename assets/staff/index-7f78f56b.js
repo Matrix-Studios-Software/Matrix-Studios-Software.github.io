@@ -7459,12 +7459,8 @@ const Zd = ({
 		const [r, l] = ve.useState(!1), o = `${e?"bg-slate-800 text-white":"bg-slate-200 text-slate-900"} relative order-1 text-white h-10 rounded-md w-60 overflow-hidden shadow-md hover:bg-blue-800 hover:text-white transition ease-in-out duration-150`;
 		return ce("div", {
 			className: "flex flex-col gap-2 items-center justify-center md:flex-row md:gap-12",
-			children: [R("img", {
-				className: "w-40 order-0 md:order-1 drop-shadow-2xl",
-				src: "./assets/img/matrix.png",
-				alt: "logo"
-			})]
-		})
+			children: []
+		})                          
 	},
 	bd = "";
 
