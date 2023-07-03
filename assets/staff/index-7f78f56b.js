@@ -7459,38 +7459,10 @@ const Zd = ({
 		const [r, l] = ve.useState(!1), o = `${e?"bg-slate-800 text-white":"bg-slate-200 text-slate-900"} relative order-1 text-white h-10 rounded-md w-60 overflow-hidden shadow-md hover:bg-blue-800 hover:text-white transition ease-in-out duration-150`;
 		return ce("div", {
 			className: "flex flex-col gap-2 items-center justify-center md:flex-row md:gap-12",
-			children: [ce("button", {
-				className: o,
-				children: [R(Yd, {
-					className: "absolute left-0 top-2/4 -translate-y-1/2 text-7xl -rotate-3 text-blue-600"
-				}), R("span", {
-					className: "absolute top-0 left-0 w-full h-full flex items-center justify-end pr-5 z-10",
-					onClick: async () => {
-						try {
-							await navigator.clipboard.writeText(t), l(!0), setTimeout(() => {
-								l(!1)
-							}, 1e3)
-						} catch (u) {
-							console.error("Copy failed: ", u)
-						}
-					},
-					children: r ? "Copied!" : "Copy to Server"
-				})]
-			}), R("img", {
+			children: [R("img", {
 				className: "w-40 order-0 md:order-1 drop-shadow-2xl",
 				src: "./assets/img/matrix.png",
 				alt: "logo"
-			}), ce("button", {
-				className: o,
-				children: [R("span", {
-					className: "w-full h-full flex items-center justify-start pl-5 z-10",
-					onClick: () => {
-						window.location.href = n
-					},
-					children: "Connect to Discord"
-				}), R(Bd, {
-					className: "absolute right-0 top-2/4 -translate-y-1/2 text-7xl rotate-3 text-blue-600"
-				})]
 			})]
 		})
 	},
