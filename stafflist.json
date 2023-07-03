@@ -3,7 +3,7 @@
     "ServerIP": "matrixstudios.ltd",
     "DiscordURL": "discord.matrixstudios.ltd",
     "Homepage": "/",
-    "StaffPerPage": 5,
+    "StaffPerPage": 10,
     "AvatarDisplayType": "head",
     "Ranks": {
       "Founder": "red",
