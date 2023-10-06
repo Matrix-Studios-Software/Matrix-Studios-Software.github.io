@@ -1,6 +1,6 @@
 var jwt = localStorage.getItem("jwt");
 if (jwt != null) {
-  window.location.href = '/login.html'
+  window.location.href = './login.html'
 }
 
 function login() {
@@ -27,7 +27,7 @@ function login() {
           confirmButtonText: 'OK'
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = '/login.html';
+            window.location.href = './login.html';
           }
         });
       } else {
