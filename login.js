@@ -8,11 +8,12 @@ function login() {
   const password = document.getElementById("password").value;
 
   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "https://www.mecallapi.com/api/login");
+  xhttp.open("POST", "https://www.melivecode.com/api/login");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({
     "username": username,
-    "password": password
+    "password": password,
+    "expiresIn": 60000
   }));
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
