@@ -22,7 +22,7 @@ function login() {
       if (objects['status'] == 'ok') {
         localStorage.setItem("jwt", "test123");
         Swal.fire({
-          text: "Success!",
+          text: objects[message],
           icon: 'success',
           confirmButtonText: 'OK'
         }).then((result) => {
@@ -32,7 +32,7 @@ function login() {
         });
       } else {
         Swal.fire({
-          text: "Unable to login!",
+          text: objects[message],
           icon: 'error',
           confirmButtonText: 'OK'
         });
