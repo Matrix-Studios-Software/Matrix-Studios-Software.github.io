@@ -8,7 +8,7 @@ function login() {
   const password = document.getElementById("password").value;
 
   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "https://158.69.120.109:4223/user/login");
+  xhttp.open("POST", "http://api.matrixstudios.ltd:4223/user/login");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.setRequestHeader("Authorize-API-Key", "AuthorizeKey12345");
   xhttp.send(JSON.stringify({
