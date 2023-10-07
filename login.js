@@ -12,7 +12,7 @@ function login() {
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.setRequestHeader("Authorize-API-Key", "AuthorizeKey12345");
   xhttp.send(JSON.stringify({
-    "username": username,
+    "email": username,
     "password": password
   }));
   xhttp.onreadystatechange = function () {
