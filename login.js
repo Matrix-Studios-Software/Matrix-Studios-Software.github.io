@@ -15,7 +15,7 @@ function login() {
     "email": username,
     "password": password
   }));
-  console.log(xhttp.getAllResponseHeaders)
+
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
       const objects = JSON.parse(this.responseText);
