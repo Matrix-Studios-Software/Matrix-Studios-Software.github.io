@@ -20,6 +20,8 @@ function login() {
     if (this.readyState == 4) {
       const objects = JSON.parse(this.responseText);
       console.log(objects);
+      console.log(objects['status']);
+      console.log(objects['message']);
       if (objects['status'] == 'ok') {
         Swal.fire({
           text: objects['message'],
@@ -59,6 +61,9 @@ function register() {
     if (this.readyState == 4) {
       const objects = JSON.parse(this.responseText);
       console.log(objects);
+      console.log(objects['status']);
+      console.log(objects['message']);
+
       if (objects['status'] == 'ok') {
         Swal.fire({
           text: objects['message'],
