@@ -12,20 +12,20 @@
     <link href="login.css" rel="stylesheet">
   </head>
   <body class="text-center">
-    <main class="form-signin">
+    <main class="card-body">
       <form onsubmit="return login()">
         <h1 class="h3 mb-3 fw-normal"><b>Matrix Studios</b> - Login</h1>
     
-        <div class="form-floating">
+        <div class="form-group">
           <input type="email" class="form-control" id="username" placeholder="name@example.com">
-          <label for="floatingInput">Email address</label>
         </div>
-        <div class="form-floating">
+        <div class="form-group">
           <input type="password" class="form-control" id="password" placeholder="Password">
-          <label for="floatingPassword">Password</label>
         </div>
     
-        <button class="btn btn-primary btn-full" type="submit">Login</button>
+        <div class="form-actions">
+          <button class="btn btn-primary btn-full" type="submit">Login</button>
+        </div>
         <p class="mt-5 mb-3 text-muted"></p><a href='./register.html'>Need to make an account? Go to the Register page!</a></p>
       </form>
     </main>

@@ -670,7 +670,8 @@ html.to-theme .transition-content {
 
 .card-body {
   background: 0 0;
-  margin: 0;
+  max-width: 25rem;
+  margin: auto;
   padding: 0;
   border: none;
   color: var(--text-secondary)
@@ -2996,8 +2997,8 @@ html.to-theme .transition-content {
 
 .form-control {
   background: #fff;
-  padding: .45rem .85rem;
-  border: solid 2px var(--color-border);
+  padding: .30rem .70rem;
+  border: solid 1px var(--color-border);
   border-radius: .5rem;
   box-shadow: none!important;
   color: var(--text-primary);
