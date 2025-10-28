@@ -1,278 +1,734 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Studios - Software Engineering</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <title>Matrix Studios</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                    linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+        }
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00ff88;
+            letter-spacing: 3px;
+        }
 
-  <!-- =======================================================
-  * Template Name: eNno
-  * Updated: Jul 27 2023 with Bootstrap v5.3.1
-  * Template URL: https://bootstrapmade.com/enno-free-simple-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+        .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00ff88;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00ff88, #126122);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+            font-weight: 400;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #00ff88;
+            color: #0a0a0a;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #00d975;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 40px rgba(0, 255, 136, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00ff88;
+            border: 2px solid #00ff88;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 136, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Mission Section */
+        .mission {
+            position: relative;
+            padding: 8rem 5%;
+            z-index: 1;
+        }
+
+        .mission-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-label {
+            display: inline-block;
+            color: #00ff88;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 50px;
+        }
+
+        .mission h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .mission-statement {
+            font-size: 1.4rem;
+            color: #b0b0b0;
+            line-height: 1.9;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .mission-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .value-item {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .value-item:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.15);
+        }
+
+        .value-item h3 {
+            font-size: 1.3rem;
+            color: #00ff88;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .value-item p {
+            color: #a0a0a0;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            position: relative;
+            padding: 8rem 5%;
+            background: rgba(0, 255, 136, 0.02);
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #00ff88;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #b0b0b0;
+            margin-bottom: 5rem;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .tech-carousel {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .tech-track {
+            display: flex;
+            gap: 3rem;
+            animation: scroll 30s linear infinite;
+        }
+
+        .tech-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .tech-item {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 2rem 2.5rem;
+            border-radius: 16px;
+            min-width: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .tech-item:hover {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: #00ff88;
+            transform: translateY(-10px);
+        }
+
+        .tech-logo {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tech-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: #e0e0e0;
+            font-size: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            position: relative;
+            padding: 8rem 5%;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #00ff88, #126122);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .contact p {
+            color: #b0b0b0;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 136, 0.1);
+            color: #808080;
+            z-index: 1;
+            font-weight: 400;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: float 15s infinite;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .mission h2 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .mission-values {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
+<div class="bg-grid"></div>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="index.html">Matrix Studios</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="/spaces.html">Spaces</a></li>
-          <li><a class="nav-link scrollto" href="/login.html">Login</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
+<!-- Navigation -->
+<nav>
+    <div class="logo">
+        <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <line x1="30" y1="10" x2="60" y2="25" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
+            <line x1="60" y1="55" x2="30" y2="70" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
+            <line x1="30" y1="70" x2="0" y2="55" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
+            <line x1="0" y1="55" x2="0" y2="25" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
+            <line x1="0" y1="25" x2="30" y2="10" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
+            <line x1="30" y1="10" x2="30" y2="40" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
+            <line x1="60" y1="25" x2="60" y2="55" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
+            <line x1="30" y1="40" x2="60" y2="55" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
+            <line x1="0" y1="55" x2="30" y2="40" stroke="#00ff88" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="30" cy="10" r="2.5" fill="#00ff88"/>
+            <circle cx="60" cy="25" r="2.5" fill="#00ff88"/>
+            <circle cx="60" cy="55" r="2.5" fill="#00ff88"/>
+            <circle cx="30" cy="70" r="2.5" fill="#00ff88"/>
+            <circle cx="0" cy="55" r="2.5" fill="#00ff88"/>
+            <circle cx="0" cy="25" r="2.5" fill="#00ff88"/>
+            <circle cx="30" cy="40" r="2.5" fill="#00ff88"/>
+        </svg>
+        MATRIX
     </div>
-  </header><!-- End Header -->
+    <ul class="nav-links">
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#tech">Technology</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h1>Making software free and better than everyone else</h1>
-          <h2>We are team of developers who make free software with features comparable to paid services</h2>
-          <div class="d-flex">
-            <a href="#about" class="btn-get-started scrollto">Get Started</a>
-          </div>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Own Your Software</h1>
+        <p>We take your ideas and make them deployable on your own infrastructure. Zero compromise, and zero overhead.</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Talk To Us</a>
+            <a href="#mission" class="btn btn-secondary">Our Mission</a>
         </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img">
-          <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
-        </div>
-      </div>
     </div>
+</section>
 
-  </section><!-- End Hero -->
+<!-- Mission Section -->
+<section class="mission" id="mission">
+    <div class="mission-content">
+        <span class="section-label">Our Mission</span>
+        <h2>Building Software That You Control</h2>
+        <p class="mission-statement">
+            We believe that creating apps shouldn't lock you into proprietary platforms or be expensive.
+            Our mission is to create powerful, production-ready solutions that live on your infrastructure, scale with your needs,
+            and remain entirely under your control. From the first line of code to deployment and beyond, we build with you, the customer,
+            in mind and make sure you know that at the end of the day, you can sleep knowing everything you have created is safe
+            and in your hands.
+        </p>
 
-  <main id="main">
-
-    <!-- ======= Featured Services Section ======= -->
-    <section id="featured-services" class="featured-services">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-laptop"></i></div>
-              <h4 class="title"><a href="">Pricing</a></h4>
-              <p class="description">Our software is free and open source on our GitHub and respective product pages. Find out more in our Discord.</p>
+        <div class="mission-values">
+            <div class="value-item">
+                <h3>Full Ownership</h3>
+                <p>Everything you deploy is yours. No hidden fees and no vendor lock-in.</p>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-card-checklist"></i></div>
-              <h4 class="title"><a href="">Compatability</a></h4>
-              <p class="description">Everything we manufacture is compatable with many different software versions and we often do checks to ensure this stays true.</p>
+            <div class="value-item">
+                <h3>Infrastructure Freedom</h3>
+                <p>Control your own servers at your own pace.</p>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-clipboard-data"></i></div>
-              <h4 class="title"><a href="">Performance</a></h4>
-              <p class="description">Our performance is a main priority at Matrix Studios. We constantly profile our code and revamp classes to ensure the best possible experience.</p>
+            <div class="value-item">
+                <h3>Production Ready</h3>
+                <p>We make code that is production ready and optimized for high-stakes environments.</p>
             </div>
-          </div>
         </div>
-
-      </div>
-    </section><!-- End Featured Services Section -->
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="section-title">
-          <span>Our History</span>
-          <h2>Our History</h2>
-          <p>For the last 5 years, Matrix Studios Software has been ran by a similar group of people who all have the exact same passion. That passion is to find ways to make affordable and quality software for the greater population. Thousands of users have used our software and many have benefited from the low expenses that our services provide.</p>
-        </div>
-
-      </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts">
-      <div class="container">
-
-        <div class="row counters">
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="370" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Impacted Startups</p>
-          </div>
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="110000" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Impressions</p>
-          </div>
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="50000" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Lines Of Code</p>
-          </div>
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="1100" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Commits</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Counts Section -->
-
-
-    <section id="testimonials" class="testimonials section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <span>Our Team</span>
-          <h2>Our Team</h2>
-          <p>The people who run the show!</p>
-        </div>
-
-        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Hello! I am Max and I am a software developer who lives in California. I have a large interest in the optimization of software as well as low-level languages. I have experiences with languages such as Kotlin, Rust, and Java as well as knowledge in Amazon Web Services, Redis, Mongo, and Rabbit.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Max C.</h3>
-                <h4>CEO &amp; Founder</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Todo
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Nate S.</h3>
-                <h4>Senior Developer &amp; Founder</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Todo
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Caleb M.</h3>
-                <h4>Senior Developer &amp; Founder</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Hey folks! I am Nathan, a 16-year-old Software Engineer and Infrastructure Manager hailing from California. My passion lies in the continuous pursuit of knowledge, particularly in exploring new frameworks and discovering innovative software solutions.
-Over the past two years, I have honed my programming skills in Java and Kotlin, with a primary emphasis on backend development.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Nathan W.</h3>
-                <h4>Senior Developer</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-
-    <div class="footer-top">
-
-      <div class="container">
-
-        <div class="row  justify-content-center">
-          <div class="col-lg-6">
-            <h3>Matrix Studios</h3>
-            <p>Free and better software</p>
-          </div>
-        </div>
-
-      </div>
     </div>
+</section>
 
-    <div class="container footer-bottom clearfix">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Matrix Studios</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/enno-free-simple-bootstrap-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+<!-- Tech Stack Section -->
+<section class="tech-stack" id="tech">
+    <h2 class="section-title">Technology Stack</h2>
+    <p class="section-subtitle">What we work with at Matrix</p>
+    <div class="tech-carousel">
+        <div class="tech-track">
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                </div>
+                <span class="tech-name">React</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                </div>
+                <span class="tech-name">Node.js</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
+                </div>
+                <span class="tech-name">TypeScript</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes">
+                </div>
+                <span class="tech-name">Kubernetes</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"  alt=""/>
+                </div>
+                <span class="tech-name">Mongo</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg"  alt="Kotlin"/>
+                </div>
+                <span class="tech-name">Kotlin</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+                </div>
+                <span class="tech-name">Docker</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"  alt="Express"/>
+                </div>
+                <span class="tech-name">Express</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apache/apache-original.svg"  alt="Apache"/>
+                </div>
+                <span class="tech-name">Apache</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"  alt="Git"/>
+                </div>
+                <span class="tech-name">Git</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"  alt="Java"/>
+                </div>
+                <span class="tech-name">Java</span>
+            </div>
+            <!-- Dupe -->
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                </div>
+                <span class="tech-name">React</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                </div>
+                <span class="tech-name">Node.js</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
+                </div>
+                <span class="tech-name">TypeScript</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes">
+                </div>
+                <span class="tech-name">Kubernetes</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"  alt=""/>
+                </div>
+                <span class="tech-name">Mongo</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg"  alt="Kotlin"/>
+                </div>
+                <span class="tech-name">Kotlin</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+                </div>
+                <span class="tech-name">Docker</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"  alt="Express"/>
+                </div>
+                <span class="tech-name">Express</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apache/apache-original.svg"  alt="Apache"/>
+                </div>
+                <span class="tech-name">Apache</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"  alt="Git"/>
+                </div>
+                <span class="tech-name">Git</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-logo">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"  alt="Java"/>
+                </div>
+                <span class="tech-name">Java</span>
+            </div>
+        </div>
     </div>
-  </footer><!-- End Footer -->
+</section>
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="contact-content">
+        <h2>Let's Talk</h2>
+        <p>Want to learn more or see how our software works in a real environment? Contact us.</p>
+        <a href="mailto:max@arch.mc" class="btn btn-primary">Get In Touch</a>
+    </div>
+</section>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Matrix Studios. Own your software.</p>
+</footer>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+<script>
+    // Create floating particles
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+        document.body.appendChild(particle);
 
+        setTimeout(() => {
+            particle.remove();
+        }, 25000);
+    }
+
+    // Generate particles periodically
+    setInterval(createParticle, 2000);
+
+    // Create initial particles
+    for(let i = 0; i < 5; i++) {
+        setTimeout(createParticle, i * 400);
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
 </body>
-
 </html>
