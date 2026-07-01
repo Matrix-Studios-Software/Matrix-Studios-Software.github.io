@@ -1,0 +1,73 @@
+:root {
+  --background: #faf5e8;
+  --ink: #0d3428;
+  --ink-muted: rgba(13, 52, 40, 0.62);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--ink);
+  font-family: var(--font-space-grotesk), "Space Grotesk", system-ui,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  animation: rise 0.7s ease both;
+}
+
+.logo {
+  width: 148px;
+  height: 148px;
+  box-shadow: 0 28px 56px -28px rgba(13, 52, 40, 0.45);
+  margin-bottom: 24px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 5vw, 2.9rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.tagline {
+  margin: 12px 0 0;
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink-muted);
+}
+
+.divider {
+  margin: 0 10px;
+  opacity: 0.45;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
